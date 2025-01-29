@@ -11,7 +11,7 @@ This script is a modified version of [\[Original Repository\]](https://github.co
   - Ensured correct metadata handling for OX Inventory items.
 - **Better Error Handling:** Improved debugging logs for better issue tracking.
 - **General Code Cleanup:** Refactored code for better readability and maintainability.
-- - **Export integration for JP-Territories:** In server_main.lua you´ll find an export for jp-territories which you might want to remove if you are not using this.
+- **Export integration for JP-Territories:** In server_main.lua you´ll find an export for jp-territories which you might want to remove if you are not using this.
 
 ## **⚠️ License & Contribution Notes**
 - This project remains under **GNU General Public License v3 (GPL-3.0)**.
