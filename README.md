@@ -51,9 +51,6 @@ https://discord.gg/sp3cgCy4Ay
 ```
 + Add graffitis.sql to your database
 
-## Props
-Take the spray-props folder and (In this script) put it under the other scripts
-
 ## Images
 ![spraycan](https://github.com/Kalajiqta/qb-graffiti/blob/main/images/spraycan.png?raw=true)
 ![sprayremover](https://github.com/Kalajiqta/qb-graffiti/blob/main/images/sprayremover.png?raw=true)
