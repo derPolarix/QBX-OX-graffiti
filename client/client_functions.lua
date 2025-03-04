@@ -93,12 +93,12 @@ end
 function PlaceGraffiti(model, cb)
     local ped = PlayerPedId()
 
-    print("DEBUG - PlaceGraffiti gestartet mit Model:", model)
+    if Config.Debug then print("DEBUG - PlaceGraffiti gestartet mit Model:", model) end
 
     -- Stelle sicher, dass das Modell ein Hash ist
     local modelHash = tonumber(model) or GetHashKey(model)
 
-    print("DEBUG - Model Hash:", modelHash)
+    if Config.Debug then print("DEBUG - Model Hash:", modelHash) end
 
     RequestModel(modelHash)
     local timeout = 5000
@@ -113,13 +113,13 @@ function PlaceGraffiti(model, cb)
         return
     end
 
-    print("DEBUG - Model erfolgreich geladen:", modelHash)
+    if Config.Debug then print("DEBUG - Model erfolgreich geladen:", modelHash) end
 
     local centerCoords = GetEntityCoords(ped) + (GetEntityForwardVector(ped) * 1.5)
     placingObject = CreateObject(modelHash, centerCoords, false, false)
 
     if placingObject then
-        print("DEBUG - Objekt erfolgreich erstellt:", placingObject)
+        if Config.Debug then print("DEBUG - Objekt erfolgreich erstellt:", placingObject) end
         isPlacing = true
 
         CreateThread(function()
@@ -139,7 +139,7 @@ function PlaceGraffiti(model, cb)
                 SetRotation(placingObject)
 
                 if IsControlJustPressed(0, 177) then
-                    print("DEBUG - Platzierung abgebrochen")
+                    if Config.Debug then print("DEBUG - Platzierung abgebrochen") end
                     DeleteEntity(placingObject)
                     placingObject = nil
                     isPlacing = false
@@ -148,7 +148,7 @@ function PlaceGraffiti(model, cb)
                 end
 
                 if graffiti then
-                    print("DEBUG - Graffiti existiert bereits in der Nähe!")
+                    if Config.Debug then print("DEBUG - Graffiti existiert bereits in der Nähe!") end
                     QBCore.Functions.Notify(Lang:t('error.exist_graffiti'), 'error')
                     DeleteEntity(placingObject)
                     placingObject = nil
@@ -158,7 +158,7 @@ function PlaceGraffiti(model, cb)
                 end
 
                 if blacklist then
-                    print("DEBUG - Graffiti kann an dieser Position nicht platziert werden!")
+                    if Config.Debug then print("DEBUG - Graffiti kann an dieser Position nicht platziert werden!") end
                     QBCore.Functions.Notify(Lang:t('error.blacklist_location'), 'error')
                     DeleteEntity(placingObject)
                     placingObject = nil
@@ -174,7 +174,7 @@ function PlaceGraffiti(model, cb)
                         local entityCoords = GetEntityCoords(placingObject)
                         local entityRotation = GetEntityRotation(placingObject)
 
-                        print("DEBUG - Graffiti platziert an:", entityCoords)
+                        if Config.Debug then print("DEBUG - Graffiti platziert an:", entityCoords) end
 
                         DeleteEntity(placingObject)
                         placingObject = nil
