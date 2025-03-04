@@ -139,8 +139,8 @@ RegisterNetEvent('qb-graffiti:client:placeGraffiti', function(model, slot)
 
     if Config.Debug then print("DEBUG - Graffiti Platzieren: Model:", model, "Slot:", slot) end
 
-    if IsPedInAnyVehicle(PlayerPedId(), false) then 
-        if Config.Debug then print("DEBUG - Player is in a vehicle")
+    if IsPedInAnyVehicle(PlayerPedId(), false) then
+        if Config.Debug then print("DEBUG - Player is in a vehicle") end
         return
     end
 
