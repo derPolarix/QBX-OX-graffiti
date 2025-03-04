@@ -10,6 +10,8 @@ Config.BlacklistedZones = {
 
 Config.distanceBetweenGraffitis = 50
 
+Config.Debug = false
+
 Config.Sprays = {
     [GetHashKey('sprays_angels')] = {
         name = 'Spray Angels',

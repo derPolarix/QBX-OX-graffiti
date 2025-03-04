@@ -137,26 +137,31 @@ RegisterNetEvent('qb-graffiti:client:placeGraffiti', function(model, slot)
     local information = GetInfo(model)
     local ped = PlayerPedId()
 
-    print("DEBUG - Graffiti Platzieren: Model:", model, "Slot:", slot) -- Debug
+    if Config.Debug then print("DEBUG - Graffiti Platzieren: Model:", model, "Slot:", slot) end
+
+    if IsPedInAnyVehicle(PlayerPedId(), false) then 
+        if Config.Debug then print("DEBUG - Player is in a vehicle")
+        return
+    end
 
     if isPlacing then
-        print("DEBUG - Bereits ein Graffiti wird platziert!") -- Debug
+        if Config.Debug then print("DEBUG - Bereits ein Graffiti wird platziert!") end
         return
     end
 
     if isLoaded then
         if information then
-            print("DEBUG - GetInfo erfolgreich: ", json.encode(information)) -- Debug
+            if Config.Debug then print("DEBUG - GetInfo erfolgreich: ", json.encode(information)) end
 
             if information.gang then
                 if PlayerData.gang and PlayerData.gang.name ~= information.gang then
-                    print("DEBUG - Spieler gehört nicht zur benötigten Gang!") -- Debug
+                    if Config.Debug then print("DEBUG - Spieler gehört nicht zur benötigten Gang!") end
                     return QBCore.Functions.Notify(Lang:t('error.gang_only'), 'error')
                 end
             end
 
             PlaceGraffiti(model, function(result, coords, rotation)
-                print("DEBUG - PlaceGraffiti Ergebnis:", result, "Coords:", coords, "Rotation:", rotation) -- Debug
+                if Config.Debug then print("DEBUG - PlaceGraffiti Ergebnis:", result, "Coords:", coords, "Rotation:", rotation) end
 
                 if result then
                     local tempAlpha = 0
@@ -193,11 +198,11 @@ RegisterNetEvent('qb-graffiti:client:placeGraffiti', function(model, slot)
                         TriggerServerEvent('qb-graffiti:client:addServerGraffiti', model, coords, rotation)
                     end)
                 else
-                    print("DEBUG - PlaceGraffiti hat fehlgeschlagen!") -- Debug
+                    if Config.Debug then print("DEBUG - PlaceGraffiti hat fehlgeschlagen!") end
                 end
             end)
         else
-            print("DEBUG - GetInfo hat `nil` zurückgegeben!") -- Debug
+            if Config.Debug then print("DEBUG - GetInfo hat `nil` zurückgegeben!") end
             QBCore.Functions.Notify(Lang:t('error.not_information'), 'error')
         end
     end
@@ -236,7 +241,7 @@ RegisterNetEvent('qb-graffiti:client:graffitiShop', function()
         table.insert(graffitiMenu, {
             title = Lang:t('menu.graffiti_shop'),
             icon = 'fa-solid fa-palette',
-            disabled = true -- Menü-Header ist nicht klickbar
+            disabled = true
         })
 
         for k, v in pairs(Config.Sprays) do
