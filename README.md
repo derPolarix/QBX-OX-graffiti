@@ -14,7 +14,7 @@ https://streamable.com/g4954a
 ## Kalajiqta Discord
 https://discord.gg/sp3cgCy4Ay
 
-## Instalation
+## Installation
 + ox-inventory/data/items.lua ->
 ```lua
     -- Graffitis
